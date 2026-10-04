@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Генератор поздравлений ИИ 🤖</title>
+    <title>Генератор поздравлений ИИ </title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -18,7 +18,6 @@
             position: relative;
         }
 
-        /* Главная обертка для карточки и человечков */
         .wrapper {
             display: flex;
             align-items: center;
@@ -34,7 +33,7 @@
             text-align: center;
             width: 340px;
             border: 1px solid #334155;
-            z-index: 10; /* Карточка всегда поверх рук */
+            z-index: 10;
         }
 
         h1 { font-size: 22px; margin-bottom: 8px; color: #38bdf8; }
@@ -83,42 +82,50 @@
         }
         .status-text { font-size: 13px; color: #38bdf8; font-style: italic; }
 
-        /* Стили для мемных человечков по бокам */
-                /* Общие стили для картинок по бокам */
             .wojak {
-            position: fixed; /* Прижимает к экрану, а не к карточке */
-            bottom: 0;       /* Опускает человечков на самый низ экрана */
+            position: fixed;
+            bottom: 0;
             z-index: 5;
         }
 
             .wojak img {
-            height: 75vh;    /* Автоматически подстраивает размер под высоту экрана (45% от высоты) */
+            height: 75vh;
             display: block;
             pointer-events: none;
         }
 
-        /* Позиция левого чувака */
+        
         .wojak-left {
-            left: 0; /* Сдвиг влево от карточки */
+            left: 0;
         }
 
-        /* Позиция правого чувака */
+        
         .wojak-right {
-            right: 0; /* Сдвиг вправо от карточки */
+            right: 0;
         }
+        @media (max-width: 768px) {
+            .wojak img {
+                height: 25vh;
+            }
+            .container {
+                width: 85%;
+                padding: 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Обертка, которая держит всё вместе -->
+
     <div class="wrapper">
         
-        <!-- Левый мемный чувак (из файла left.png) -->
+
         <div class="wojak wojak-left">
             <img src="bng1.png" alt="Wojak Left">
         </div>
 
-        <!-- Центральная карточка приложения -->
+
         <div class="container">
             <div id="formStage">
                 <h1>AI Birthday Wish v2.4</h1>
@@ -138,7 +145,6 @@
             </div>
         </div>
 
-        <!-- Правый мемный чувак (из файла right.png) -->
         <div class="wojak wojak-right">
             <img src="bng2.png" alt="Wojak Right">
         </div>

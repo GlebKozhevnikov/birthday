@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор поздравлений ИИ 🤖</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Главная обертка для карточки и человечков */
+        .wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .container {
+            background: #1e293b;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 340px;
+            border: 1px solid #334155;
+            z-index: 10; /* Карточка всегда поверх рук */
+        }
+
+        h1 { font-size: 22px; margin-bottom: 8px; color: #38bdf8; }
+        p { font-size: 14px; color: #94a3b8; margin-bottom: 24px; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 15px;
+        }
+        input:focus { border-color: #38bdf8; outline: none; }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: 0.2s;
+        }
+        button:hover { background: #0369a1; }
+        
+        .loader-box { display: none; margin-top: 20px; }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #38bdf8;
+            transition: width 0.1s linear;
+        }
+        .status-text { font-size: 13px; color: #38bdf8; font-style: italic; }
+
+        /* Стили для мемных человечков по бокам */
+                /* Общие стили для картинок по бокам */
+            .wojak {
+            position: fixed; /* Прижимает к экрану, а не к карточке */
+            bottom: 0;       /* Опускает человечков на самый низ экрана */
+            z-index: 5;
+        }
+
+            .wojak img {
+            height: 75vh;    /* Автоматически подстраивает размер под высоту экрана (45% от высоты) */
+            display: block;
+            pointer-events: none;
+        }
+
+        /* Позиция левого чувака */
+        .wojak-left {
+            left: 0; /* Сдвиг влево от карточки */
+        }
+
+        /* Позиция правого чувака */
+        .wojak-right {
+            right: 0; /* Сдвиг вправо от карточки */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Обертка, которая держит всё вместе -->
+    <div class="wrapper">
+        
+        <!-- Левый мемный чувак (из файла left.png) -->
+        <div class="wojak wojak-left">
+            <img src="bng1.png" alt="Wojak Left">
+        </div>
+
+        <!-- Центральная карточка приложения -->
+        <div class="container">
+            <div id="formStage">
+                <h1>AI Birthday Wish v2.4</h1>
+                <p>Генерация персональной открытки на основе психотипа по имени и возрасту</p>
+                <form id="mainAppInitForm">
+                    <input type="text" id="u_name" placeholder="Имя именинника" required autocomplete="off">
+                    <input type="number" id="u_age" placeholder="Возраст" required min="1" max="120">
+                    <button type="submit">Запустить анализ данных</button>
+                </form>
+            </div>
+
+            <div id="loaderStage" class="loader-box">
+                <div class="progress-bar">
+                    <div id="fill" class="progress-fill"></div>
+                </div>
+                <div id="status" class="status-text">Инициализация модулей ИИ...</div>
+            </div>
+        </div>
+
+        <!-- Правый мемный чувак (из файла right.png) -->
+        <div class="wojak wojak-right">
+            <img src="bng2.png" alt="Wojak Right">
+        </div>
+
+    </div>
+
+    <script src="framework-util.js"></script>
+</body>
+</html>
